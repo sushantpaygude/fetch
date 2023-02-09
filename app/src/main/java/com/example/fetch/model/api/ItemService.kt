@@ -11,19 +11,8 @@ interface ItemService {
     @GET("hiring.json")
     fun fetchItems() : Call<List<Item>>
 
-
     companion object {
-        private var itemService : ItemService? = null
-        fun create() : ItemService {
-            if(itemService == null) {
-                val retrofit = Retrofit.Builder()
-                    .baseUrl("https://fetch-hiring.s3.amazonaws.com/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
-                itemService = retrofit.create(ItemService::class.java)
-            }
-            return itemService!!
-        }
+        val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/"
     }
 }
 

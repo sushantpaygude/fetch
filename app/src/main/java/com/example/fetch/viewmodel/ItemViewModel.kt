@@ -9,11 +9,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
-class ItemViewModel : ViewModel() {
+class ItemViewModel @Inject constructor(private val itemRepository: ItemRepository) : ViewModel() {
     val itemList = MutableLiveData<List<ListItem>>()
-
-    private val itemRepository = ItemRepository(ItemService.create())
 
     suspend fun fetchItems() {
        val response = itemRepository.fetchItems()
